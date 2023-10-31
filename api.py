@@ -10,14 +10,20 @@ from keras.models import load_model
 import pandas as pd
 import os
 import logging
+from dotenv import load_dotenv
+
+load_dotenv()
 
 b1Model = None
 detailsDf = None
-VALID_API_KEY = 'password'
+
+app = Flask(__name__)
+
+app.config['VALID_API_KEY'] = os.environ.get('VALID_API_KEY')
 
 
 def checkApiKey(apiKey):
-    return apiKey == VALID_API_KEY
+    return apiKey == app.config['VALID_API_KEY']
 
 
 def resizeAndConcatenate(frontFile, backFile):
@@ -77,8 +83,6 @@ def predictClass(inputImage):
     return (result)
 
 
-app = Flask(__name__)
-
 logging.basicConfig(filename='server_logs.log', level=logging.DEBUG)
 
 
@@ -130,7 +134,6 @@ def setup():
 
     # Replace with the path to your B1_model weights files
     modelWeightsPath = 'tl_b1_model_v1.weights.best.hdf5'
-
     detailsDf = pd.read_csv('dataTransformation\coinDetail.csv')
 
     b1Model = load_model(modelWeightsPath)
