@@ -13,7 +13,7 @@ import logging
 
 b1Model = None
 detailsDf = None
-VALID_API_KEY = 'password1'
+VALID_API_KEY = 'password'
 
 
 def checkApiKey(apiKey):
