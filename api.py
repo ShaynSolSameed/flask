@@ -96,7 +96,7 @@ def postImage():
         if not apiKey or not checkApiKey(apiKey):
             logging.info(f"Response: {'unauthorized'} - Status Code: 401")
             return jsonify({'error': 'Unauthorized'}), 401
-        requestCount = len(os.listdir('flask\static\pics'))
+        requestCount = len(os.listdir('static\pics'))
 
         if 'back' not in request.files:
             logging.info(f"Response: {'no back image'} - Status Code: 400")
@@ -111,7 +111,7 @@ def postImage():
         concatedImage = resizeAndConcatenate(frontImage, backImage)
 
         concatedImage.save(os.path.join(
-            "flask\\static\\pics", f"{requestCount}.jpg"))
+            "static\\pics", f"{requestCount}.jpg"))
 
         prediction = predictClass(concatedImage)
 
@@ -134,7 +134,7 @@ def setup():
 
     # Replace with the path to your B1_model weights files
     modelWeightsPath = 'tl_b1_model_v1.weights.best.hdf5'
-    detailsDf = pd.read_csv('dataTransformation\coinDetail.csv')
+    detailsDf = pd.read_csv('coinDetail.csv')
 
     b1Model = load_model(modelWeightsPath)
 
@@ -144,4 +144,4 @@ with app.app_context():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
