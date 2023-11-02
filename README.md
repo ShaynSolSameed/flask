@@ -7,9 +7,9 @@ the api takes the two images and runs an inference on the model, the model retur
 
 ## how to run
 to run this project you need three things:
-  model weights file in .hdf5 format
-  coinDetails.csv file which contains details for the coins
-  .env file which has a variable VALID_API_KEY defined in it
+  1) model weights file in .hdf5 format.
+  2) coinDetails.csv file which contains details for the coins.
+  3) .env file which has a variable VALID_API_KEY defined in it.
 
 put these three files in the project directory and run the *api.py* file. (to run this locally, you need a system with at least 16 gb RAM)
 runing this file might take a couple minutes as the setup() function runs for the first time and loads the model file and you might also see some tensorflow memory warnings.
