@@ -1,0 +1,6 @@
+.env
+tl_b1_model_v1.weights.best.hdf5
+server_logs.log
+1__canada-1-cent-1882.jpg
+18__canada-1-cent-1891.jpg
+static/pics
