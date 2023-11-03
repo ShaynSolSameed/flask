@@ -10,9 +10,6 @@ from keras.models import load_model
 import pandas as pd
 import os
 import logging
-from dotenv import load_dotenv
-
-load_dotenv()
 
 b1Model = None
 detailsDf = None
@@ -135,8 +132,10 @@ def setup():
     # Replace with the path to your B1_model weights files
     modelWeightsPath = 'tl_b1_model_v1.weights.best.hdf5'
     detailsDf = pd.read_csv('coinDetail.csv')
-
-    b1Model = load_model(modelWeightsPath)
+    print(os.environ.get('VALID_API_KEY'))
+    print(os.environ)
+    print('printed')
+    # b1Model = load_model(modelWeightsPath)
 
 
 with app.app_context():
