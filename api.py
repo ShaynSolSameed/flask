@@ -133,7 +133,7 @@ def setup():
     modelWeightsPath = 'tl_b1_model_v1.weights.best.hdf5'
     detailsDf = pd.read_csv('coinDetail.csv')
     print(os.environ.get('VALID_API_KEY'))
-    print(os.environ)
+
     print('printed')
     b1Model = load_model(modelWeightsPath)
 
