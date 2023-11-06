@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, make_response
 from flask import request, jsonify
 import numpy as np
 from io import BytesIO
@@ -81,6 +81,13 @@ def predictClass(inputImage):
 
 
 logging.basicConfig(filename='server_logs.log', level=logging.DEBUG)
+
+
+@app.route('/')
+def home():
+    response = make_response('Hello, World!')
+    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+    return response
 
 
 @app.route('/postImage', methods=['POST'])
