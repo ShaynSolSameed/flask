@@ -85,9 +85,7 @@ logging.basicConfig(filename='server_logs.log', level=logging.DEBUG)
 
 @app.route('/')
 def home():
-    response = make_response('Hello, World!')
-    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
-    return response
+    return 'hello world!'
 
 
 @app.route('/postImage', methods=['POST'])
