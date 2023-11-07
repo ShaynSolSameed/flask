@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import request, jsonify
-import numpy as np
+# import numpy as np
 from io import BytesIO
 from PIL import Image
 import cv2
