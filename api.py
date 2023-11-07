@@ -4,9 +4,9 @@ import numpy as np
 from io import BytesIO
 from PIL import Image
 import cv2
-from keras.preprocessing import image
-from keras.applications.efficientnet import preprocess_input
-from keras.models import load_model
+# from keras.preprocessing import image
+# from keras.applications.efficientnet import preprocess_input
+# from keras.models import load_model
 import pandas as pd
 import os
 import logging
