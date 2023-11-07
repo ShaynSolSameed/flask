@@ -140,7 +140,7 @@ def setup():
     print(os.environ.get('VALID_API_KEY'))
 
     print('printed')
-    b1Model = load_model(modelWeightsPath)
+    # b1Model = load_model(modelWeightsPath)
 
 
 with app.app_context():
