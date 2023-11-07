@@ -1,22 +1,22 @@
 from flask import Flask
-# from flask import request, jsonify
-# import numpy as np
-# from io import BytesIO
-# from PIL import Image
-# import cv2
-# from keras.preprocessing import image
-# from keras.applications.efficientnet import preprocess_input
-# from keras.models import load_model
-# import pandas as pd
-# import os
-# import logging
+from flask import request, jsonify
+import numpy as np
+from io import BytesIO
+from PIL import Image
+import cv2
+from keras.preprocessing import image
+from keras.applications.efficientnet import preprocess_input
+from keras.models import load_model
+import pandas as pd
+import os
+import logging
 
-# b1Model = None
-# detailsDf = None
+b1Model = None
+detailsDf = None
 
 app = Flask(__name__)
 
-# app.config['VALID_API_KEY'] = os.environ.get('VALID_API_KEY')
+app.config['VALID_API_KEY'] = os.environ.get('VALID_API_KEY')
 
 
 # def checkApiKey(apiKey):
