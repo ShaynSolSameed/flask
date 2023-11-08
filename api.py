@@ -57,6 +57,11 @@ def getDetails(index):
     result = detailsDf[detailsDf['ClassNumber'] == int(index+1)]
 
     resultDict = result.to_dict(orient='records')[0]
+
+    for key, value in resultDict.items():
+        if pd.isna(value):
+            resultDict[key] = None
+
     return (resultDict)
 
 
