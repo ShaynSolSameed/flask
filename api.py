@@ -1,4 +1,4 @@
-from flask import Flask, make_response
+from flask import Flask
 from flask import request, jsonify
 import numpy as np
 from io import BytesIO
@@ -16,6 +16,7 @@ detailsDf = None
 
 app = Flask(__name__)
 
+os.environ['VALID_API_KEY'] = 'password'
 app.config['VALID_API_KEY'] = os.environ.get('VALID_API_KEY')
 
 
@@ -85,9 +86,7 @@ logging.basicConfig(filename='server_logs.log', level=logging.DEBUG)
 
 @app.route('/')
 def home():
-    response = make_response('Hello, World!')
-    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
-    return response
+    return 'hello world!'
 
 
 @app.route('/postImage', methods=['POST'])
@@ -100,7 +99,7 @@ def postImage():
         if not apiKey or not checkApiKey(apiKey):
             logging.info(f"Response: {'unauthorized'} - Status Code: 401")
             return jsonify({'error': 'Unauthorized'}), 401
-        requestCount = len(os.listdir('static\pics'))
+        requestCount = 1  # len(os.listdir('static\pics'))
 
         if 'back' not in request.files:
             logging.info(f"Response: {'no back image'} - Status Code: 400")
@@ -113,9 +112,6 @@ def postImage():
         frontImage = request.files['front']
 
         concatedImage = resizeAndConcatenate(frontImage, backImage)
-
-        concatedImage.save(os.path.join(
-            "static\\pics", f"{requestCount}.jpg"))
 
         prediction = predictClass(concatedImage)
 
@@ -138,11 +134,12 @@ def setup():
 
     # Replace with the path to your B1_model weights files
     modelWeightsPath = 'tl_b1_model_v1.weights.best.hdf5'
-    detailsDf = pd.read_csv('coinDetail.csv')
+    scriptDir = os.path.dirname(os.path.abspath(__file__))
+    detailsDf = pd.read_csv(os.path.join(scriptDir, 'coinDetail.csv'))
     print(os.environ.get('VALID_API_KEY'))
 
     print('printed')
-    b1Model = load_model(modelWeightsPath)
+    b1Model = load_model(os.path.join(scriptDir, modelWeightsPath))
 
 
 with app.app_context():
