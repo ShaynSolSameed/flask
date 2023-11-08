@@ -112,7 +112,8 @@ def postImage():
         frontImage = request.files['front']
 
         concatedImage = resizeAndConcatenate(frontImage, backImage)
-
+        # concatedImage.save(os.path.join(
+        #     "static\\pics", f"{requestCount}.jpg"))
         prediction = predictClass(concatedImage)
 
         if prediction["confidenceLevel"] > 0.5:
